@@ -1,0 +1,60 @@
+
+@font-face {
+    font-family:'NanumGothic';
+	src: url(../font/NanumGothic-Regular.ttf); 
+    
+}
+
+
+body{
+    background-color: rgb(252,255,254);
+    font-family: NanumGothic, Arial, Helvetica, sans-serif;
+
+
+}
+
+
+#page_title {
+    color:rgb(3,158,94);
+    display: flexbox;
+    text-align: center;
+    font-size: 4em;
+    border: 3px solid blue;
+}
+
+#instructions {
+    font-size: 1.5em;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+#box_of_issues{
+    margin: 5% 10%;
+}
+
+.issues {
+    display: inline-block;
+    padding: 0.5%;
+    position: relative;
+    border: 3px solid transparent;
+    border-radius: 50px;
+    background: rgb(252,255,254);
+    background-clip: padding-box;
+    padding: 10px;
+    
+    /* just to show box-shadow still works fine */
+    /* box-shadow: 0 3px 9px black, inset 0 0 9px white; */
+
+
+}
+
+
+.issues::after {
+    position: absolute;
+    top: -3px; bottom: -3px;
+    left: -3px; right: -3px;
+    background: linear-gradient(rgb(0,222,170), rgb(0,135,245));
+    content: '';
+    z-index: -1;
+    border-radius: 50px;
+}
