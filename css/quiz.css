@@ -1,10 +1,18 @@
 
 @font-face {
     font-family:'NanumGothic';
-	src: url(../font/NanumGothic-Regular.ttf); 
-    
+	src: url(../font/NanumGothic-Regular.ttf);    
 }
 
+@font-face {
+    font-family:'NanumGothic Bold';
+	src: url(../font/NanumGothic-Bold.ttf);    
+}
+
+@font-face {
+    font-family:'NanumGothic Extra Bold';
+	src: url(../font/NanumGothic-ExtraBold.ttf);    
+}
 
 body{
     background-color: rgb(252,255,254);
@@ -32,6 +40,8 @@ body{
     margin: 5% 10%;
 }
 
+/* gradients source: https://stackoverflow.com/questions/5706963/possible-to-use-border-radius-together-with-a-border-image-which-has-a-gradient */
+
 .issues {
     display: inline-block;
     padding: 0.5%;
@@ -41,13 +51,11 @@ body{
     background: rgb(252,255,254);
     background-clip: padding-box;
     padding: 10px;
-    
     /* just to show box-shadow still works fine */
     /* box-shadow: 0 3px 9px black, inset 0 0 9px white; */
-
-
+    /*font-family: 'NanumGothic-ExtraBold';*/
+    font-weight: 900;
 }
-
 
 .issues::after {
     position: absolute;
@@ -57,4 +65,12 @@ body{
     content: '';
     z-index: -1;
     border-radius: 50px;
+}
+
+.issues:hover{
+    background: turquoise;
+    background: linear-gradient( 45deg, rgba(0,222,170,1) 20%, rgba(0,135,245,1) 100%);
+    color: white;
+    cursor: pointer;
+    background-clip: padding-box;
 }
