@@ -1,3 +1,5 @@
+
+// jquery onload
 $(function () {
     $(loadQuestions());
 
@@ -26,16 +28,51 @@ var submittedPressed = 0;
 * available
 */
 function loadQuestions() {
-    var jqxhr = $.get('http://turing.une.edu.au/~jbisho23/assignment2/quiz.php');
+
+    
+    var jqxhr = $.get('http://localhost/janellesprojects/poliquiz/php/issues.php');
 
     // if data returned successfully, populate the first question and load data to array
     jqxhr.done(function (data) {
-        populateQuestion(data.questions[currentQuestionIndex]);
-        arrayOfQuestions = data.questions;
+        //populateQuestion(data.questions[currentQuestionIndex]);
+        //arrayOfQuestions = data.questions;
+        var test = JSON.stringify(data);
+        JSON.parse(test);
+        console.log("GET request was successful");
+        console.log(test);
     })
 
     // if loading questions fails log the error
     jqxhr.fail(function (jqXHR) {
-        console.log("ERROR: " + jqXHR.error);
+        console.log("ERROR: " + jqXHR.status);
+        console.log("ERROR: " + jqXHR.statusText);
     })
+    
+
+
+    /*
+    // ALTERNATELY TRYING AJAX -- note: issue was my echo hello world
+
+    // AJAX request to get question and answers
+    $.ajax({
+        url: "http://localhost/janellesprojects/poliquiz/php/issues.php",
+        cache: false,
+        type: "GET",
+        dataType: "json",
+        success: function (response) {
+            // use data from server to populate question and answer labels in the DOM
+           console.log("WORKED");
+        },
+        error: function (xhr) {
+            console.log("ERROR");
+        }
+    });
+    */
+
+
+}
+
+
+function populateQuestion(){
+
 }

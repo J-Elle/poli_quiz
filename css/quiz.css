@@ -23,9 +23,9 @@ body{
 
 
 #page_title {
-    color:rgb(3,158,94);
-    display: flexbox;
-    text-align: center;
+    color:rgb(0,222,170);
+    display: flex;
+    justify-content: center;
     font-size: 4em;
     border: 3px solid blue;
 }
