@@ -15,7 +15,7 @@ $(function () {
 })
 
 var firstQuestionLoaded;
-var arrayOfQuestions;
+var arrayOftopics = [];
 var currentQuestionIndex = 0;
 var attempted = 0;
 var correct = 0;
@@ -34,7 +34,7 @@ function loadQuestions() {
 
     // if data returned successfully, populate the first question and load data to array
     jqxhr.done(function (data) {
-        //populateQuestion(data.questions[currentQuestionIndex]);
+        populateQuestion(data);
         //arrayOfQuestions = data.questions;
         var test = JSON.stringify(data);
         JSON.parse(test);
@@ -73,6 +73,10 @@ function loadQuestions() {
 }
 
 
-function populateQuestion(){
-
+function populateQuestion(data){
+    // convert JSON data retrieved from server to an array
+    for(var i in data){
+        arrayOftopics.push([i, data [i]]);
+    }
+    console.log(arrayOftopics);
 }
