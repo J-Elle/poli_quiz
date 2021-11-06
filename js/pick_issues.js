@@ -6,7 +6,6 @@ $(function () {
 
     // had to use long format
     $(document).on('click', ".issues",  clickIssue);
-
    
 })
 
@@ -17,6 +16,8 @@ var attempted = 0;
 var correct = 0;
 var incorrect = 0;
 var submittedPressed = 0;
+var numItems;
+
 
 /*
 * Retrieves questions from the server and calls
@@ -90,5 +91,34 @@ function showTopics(item){
 
 function clickIssue(){  
     //alert("SHOWN "+$(this).attr('id'));
-    $(this).addClass('selected');
+    
+    // Check how many issues have been selected
+    numItems = $('.selected').length;
+    
+    // if less than 5 issues selected allow toggle
+    if(numItems < 5){
+        $(this).toggleClass('selected');
+    }
+
+    // if 5 issues selected allow remove only
+    if(numItems == 5){
+        $(this).removeClass('selected');
+    }
+    
+    // update count of items selected
+    numItems = $('.selected').length
+
+    // if two or more issues selected, reveal next button
+    if(numItems >= 2){
+        $('#next_button').removeClass('hidden');
+    }
+
+    // if less than two issues selected, remove next button
+    if(numItems < 2){
+        $('#next_button').addClass('hidden');
+    }
+    
+
 }
+
+
