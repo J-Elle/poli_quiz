@@ -1,17 +1,13 @@
 
 // jquery onload
 $(function () {
+    // load questions as part of onload
     $(loadQuestions());
 
-    //$(loadGraphics());
+    // had to use long format
+    $(document).on('click', ".issues",  clickIssue);
 
-    /*
-    $('#quiz').submit(function (e) {
-        //solution to prevent double-click source: https://stackoverflow.com/questions/1414365/disable-enable-an-input-with-jquery
-        $(this).find(':submit').attr('disabled','disabled'); 
-        checkAnswer(e); 
-    });
-    */
+   
 })
 
 var firstQuestionLoaded;
@@ -72,11 +68,27 @@ function loadQuestions() {
 
 }
 
-
+// Function runs a for each over the returned JSON topics and uses function showTopics to populate into HTML
 function populateQuestion(data){
     // convert JSON data retrieved from server to an array
     for(var i in data){
         arrayOftopics.push([i, data [i]]);
     }
-    console.log(arrayOftopics);
+
+    // Used JSON directly instead of array because array populated index too
+    data.forEach(showTopics);
+    
+    //console.log(arrayOftopics);
+}
+
+
+// Function appends each topic item into the html
+function showTopics(item){
+    $('#box_of_issues').append('<div id="'+item+'" class="issues">'+item+'</div>');
+}
+
+
+function clickIssue(){  
+    //alert("SHOWN "+$(this).attr('id'));
+    $(this).addClass('selected');
 }

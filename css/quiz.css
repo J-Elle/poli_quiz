@@ -17,8 +17,6 @@
 body{
     background-color: rgb(252,255,254);
     font-family: NanumGothic, Arial, Helvetica, sans-serif;
-
-
 }
 
 
@@ -44,13 +42,14 @@ body{
 
 .issues {
     display: inline-block;
-    padding: 0.5%;
+    /* padding: 0.5%; */
     position: relative;
     border: 3px solid transparent;
     border-radius: 50px;
     background: rgb(252,255,254);
     background-clip: padding-box;
     padding: 10px;
+    margin: 1px;
     /* just to show box-shadow still works fine */
     /* box-shadow: 0 3px 9px black, inset 0 0 9px white; */
     /*font-family: 'NanumGothic-ExtraBold';*/
@@ -68,6 +67,14 @@ body{
 }
 
 .issues:hover{
+    background: turquoise;
+    background: linear-gradient( 45deg, rgba(0,222,170,1) 20%, rgba(0,135,245,1) 100%);
+    color: white;
+    cursor: pointer;
+    background-clip: padding-box;
+}
+
+.selected{
     background: turquoise;
     background: linear-gradient( 45deg, rgba(0,222,170,1) 20%, rgba(0,135,245,1) 100%);
     color: white;
