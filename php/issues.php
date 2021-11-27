@@ -59,3 +59,31 @@ $issues = array(
 if ($_SERVER["REQUEST_METHOD"] !== "POST"){
     echo json_encode($issues);
 }
+
+
+
+
+if ($_SERVER["REQUEST_METHOD"] === "POST"){
+    $array = json_decode($_POST['selectedIssues'], true);
+
+    $questionsReturned = [];
+    $y = 0;
+
+    foreach($array as $value) {
+        if ($value === "NBN"){
+           array_push($questionsReturned, "TEST");
+        } else {
+            //echo json_encode("DONE");
+        }
+    }
+
+    echo json_encode($questionsReturned);
+   
+    
+        
+    
+    
+    //echo json_encode("HELLO");
+    
+}
+

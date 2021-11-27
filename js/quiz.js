@@ -13,39 +13,44 @@ $(function () {
 })
 
 function getQuiz(e){
-    //e.preventDefault();
-    
-    //console.log("hello");
 
-    var arr = $('.selected').map(function(){
+    // Get IDs of selected items
+    var arrayOfSelected = $('.selected').map(function(){
         return this.id;
     }).get();
 
-    console.log(arr);
+    console.log(arrayOfSelected);
+    
+    // JSON stringify the issues
+    $stringIssues = JSON.stringify(arrayOfSelected);
     
 
     // serialize results from selections to a var
     // send the var in the ajax
 
     // AJAX -- do I want to sanitize anything first??
-    /*
-    $.ajax({
-        url: 'http://localhost/janellesprojects/poliquiz/php/issues.php',
-        method: 'POST',
-        dataType: 'json',
-        data: dataEntry,
-
-        success: function (data) {
-            // Display user id number in user_id element
-            $("#user_id").html("User " + data.user_id + " logged in");
+    
+     // AJAX call to get correct answer
+     $.ajax({
+        url: "http://localhost/janellesprojects/poliquiz/php/issues.php",
+        data: {
+            'selectedIssues': $stringIssues,
         },
+        cache: false,
+        type: "POST",
+        success: function (response) {
 
-        error: function (jqXHR) {
-            var $e = JSON.parse(jqXHR.responseText);
-            console.log('Status Code: ' + $e.error);
+            // do something with results
+            
+            console.log(response);
+
+        },
+        error: function (xhr) {
+            console.log("ERROR: " + xhr.error);
         }
-    })
-    */
+    });
+
+    
 
 
 
