@@ -36,7 +36,6 @@ function loadQuestions() {
         var test = JSON.stringify(data);
         JSON.parse(test);
         console.log("GET request was successful");
-        console.log(test);
     })
 
     // if loading questions fails log the error
@@ -48,7 +47,6 @@ function loadQuestions() {
 
 
     /*
-    // ALTERNATELY TRYING AJAX -- note: issue was my echo hello world
 
     // AJAX request to get question and answers
     $.ajax({
