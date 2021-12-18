@@ -53,7 +53,7 @@ $issues = array(
     "Disability",
     "Aging & Elderly",
     "Foreign Ownership",
-    "Privitisation",
+    "Privatisation",
     "Corruption"
 );
 

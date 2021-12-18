@@ -102,7 +102,7 @@ body{
 
 #next_button:hover{
     background: turquoise;
-    background: linear-gradient( 45deg, rgba(0,222,170,1) 20%, rgba(0,135,245,1) 100%);
+    background: ;
     color: white;
     cursor: pointer;
     background-clip: padding-box;
@@ -113,9 +113,11 @@ body{
 /******************************* QUIZ ********************************/
 
 .quizBorder {
-    border: 2px solid #000;
-    border-radius: 10px;
+    border: 2px solid rgba(0,222,170,1);
+    border-radius: 15px;
 }
+
+
 
 #quizHeader {
     margin: 1% 2% 3%;
@@ -124,12 +126,47 @@ body{
 #statement {
     justify-content: center;
     text-align: center;
-    margin: 2%;  
+    margin: 5%;
+    font-size: large;  
 }
-
 
 .quizContent{
     padding: 5px;
+}
+
+#quizRadioButtons {
+    margin: 1% 2% 3%;
+}
+
+input[type="radio"]{
+    margin: 20px;
+    transform: scale(1.5);
+} 
+
+/* Text for Radio buttons e.g Strongly Agree */
+label{
+    font-size: large;
+}
+
+
+input[type='submit']{
+    margin: 5% 2% 3%; 
+    border: 3px solid rgba(0,222,170,1);
+    border-radius: 50px;
+    background: rgb(252,255,254);
+    background-clip: padding-box;
+    font-size: large;
+    font-weight: 600;
+    padding: 0.2% 1%;
+}
+
+
+input[type='submit']:hover {
+    background: turquoise;
+    background: linear-gradient( 45deg, rgba(0,222,170,1) 20%, rgba(0,135,245,1) 100%);
+    color: white;
+    cursor: pointer;
+    background-clip: padding-box;
 }
 
 

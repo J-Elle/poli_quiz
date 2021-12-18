@@ -19,6 +19,7 @@ function showQuiz(){
     // Hide issues content
     $('#next_button').addClass('hidden');
     $('.issues').addClass('hidden');
+    $('#instructions').text("New instructions");
 
     // Load quiz structures
     $('#main_content_box').addClass('quizBorder');
