@@ -1,3 +1,8 @@
+var index = 0;
+var current = 1;
+var totalQuestions = 0;
+var arrayOfQuestions = [];
+
 // jquery onload
 $(function () {
 
@@ -11,8 +16,38 @@ $(function () {
         
         getQuiz(e); 
     });
+
+    radioHandler = (e)=>{
+        if($(e).prop("checked")){
+          $("#nextOnQuiz").removeAttr('disabled')
+        }
+      }
+
+
+    // Actions when pressing next on the quiz
+    $('#nextOnQuiz').click(function (e) {
+        index++;
+        current++;
+        $('#statement').text(arrayOfQuestions[index]);
+        $('#quizHeader').text("Question "+current+" / "+totalQuestions);
+
+        // reset radio buttons
+        $("input:checked").prop("checked", false);
+
+        // if all questions answered
+        if(current > totalQuestions){
+            $('#quizRadioButtons').addClass('hidden');
+            $('#quizHeader').text("Results");
+           // calculate results and display parties
+        }
+
+
+    });
    
+
+
 })
+
 
 function showQuiz(){
 
@@ -63,6 +98,13 @@ function getQuiz(e){
             // do something with results
             
             console.log(response);
+            totalQuestions = response.length;
+            $('#statement').text(response[index]);
+            $('#quizHeader').text("Question "+current+" / "+totalQuestions);
+
+            for(var i in response){
+                arrayOfQuestions.push([response [i]]);
+            }
 
         },
         error: function (xhr) {

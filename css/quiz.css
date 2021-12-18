@@ -102,7 +102,6 @@ body{
 
 #next_button:hover{
     background: turquoise;
-    background: ;
     color: white;
     cursor: pointer;
     background-clip: padding-box;
@@ -149,7 +148,7 @@ label{
 }
 
 
-input[type='submit']{
+input[type='button']{
     margin: 5% 2% 3%; 
     border: 3px solid rgba(0,222,170,1);
     border-radius: 50px;

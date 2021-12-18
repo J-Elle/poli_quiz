@@ -32,17 +32,17 @@
     <div id="statement"></div>
     
     <form id="quizRadioButtons" class="hidden">
-        <input type="radio" id="stronglyAgree" name="opinion" value="stronglyAgree">
+        <input type="radio" id="stronglyAgree" name="opinion" value="stronglyAgree" onclick="radioHandler(this)">
         <label for="stronglyAgree">Strongly Agree</label><br>
-        <input type="radio" id="somewhatAgree" name="opinion" value="somewhatAgree">
+        <input type="radio" id="somewhatAgree" name="opinion" value="somewhatAgree" onclick="radioHandler(this)">
         <label for="somewhatAgree">Somewhat Agree</label><br>
-        <input type="radio" id="neutral" name="opinion" value="neutral">
+        <input type="radio" id="neutral" name="opinion" value="neutral" onclick="radioHandler(this)">
         <label for="neutral">Neutral</label><br>
-        <input type="radio" id="somewhatDisagree" name="opinion" value="somewhatDisagree">
+        <input type="radio" id="somewhatDisagree" name="opinion" value="somewhatDisagree" onclick="radioHandler(this)">
         <label for="somewhatDisagree">Somewhat Disagree</label><br>
-        <input type="radio" id="stronglyDisagree" name="opinion" value="stronglyDisagree">
+        <input type="radio" id="stronglyDisagree" name="opinion" value="stronglyDisagree" onclick="radioHandler(this)">
         <label for="stronglyDisagree">Strongly Disagree</label><br>
-        <input type="submit" value="Next">
+        <input type="button" id="nextOnQuiz" value="Next" disabled>
     </form>
 </div>
 <div id="next_box" class="centered"> 

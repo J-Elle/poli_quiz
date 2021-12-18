@@ -97,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
                 break;
 
             case "Healthcare":
-                array_push($questionsReturned, "A Added");    
+                array_push($questionsReturned, "More money should be invested in the public healthcare system");
                 break;
 
             case "Education":
@@ -108,16 +108,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
                 array_push($questionsReturned, "A Added");    
                 break;
 
-            case "Aged pension":
-                array_push($questionsReturned, "A Added");    
-                break;
-
             case "Welfare":
                 array_push($questionsReturned, "A Added");    
                 break;
 
             case "Housing":
-                array_push($questionsReturned, "A Added");    
+                array_push($questionsReturned, "Housing affordability is a significant problem that needs to be addressed");
                 break;
 
             case "Investing":
@@ -181,7 +177,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
                 break;
 
             case "Womens Rights":
-                array_push($questionsReturned, "A Added");    
+                array_push($questionsReturned, "The gender pay gap needs to be addressed, through either more oversight or regulation");
                 break;
 
             case "Entertainment & Arts":
