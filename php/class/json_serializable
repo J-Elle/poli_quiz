@@ -1,34 +1,33 @@
 <?php
 
 
-class Register implements JsonSerializable{
+class QuestionRegistry implements JsonSerializable{
 
-    private $name;
-    private $age;
-    private $email;
+    private $code;
+    private $question;
+    private $results;
 
-    function __construct($name, $age, $email){
-        $this->name = $name;
-        $this->age = $age;
-        $this->email = $email;
+    function __construct($code, $question){
+        $this->code = $code;
+        $this->question = $question;
     }
 
-    public function getName(){
-        return $this->name;
+    public function getCode(){
+        return $this->code;
     }
 
-    public function getAge(){
-        return $this->age;
+    public function getQuestion(){
+        return $this->Question;
     }
 
-    public function getEmail(){
-        return $this->email;
+    public function getResults(){
+        return $this->results;
     }
 
 
     public function jsonSerialize(){
-        return ['name' => $this->name, 
-            'age' => $this->age,
-            'email' => $this->email];
+        return ['code' => $this->code,
+            'question' => $this->question,
+            'results' => $this->results];
     }
 }
