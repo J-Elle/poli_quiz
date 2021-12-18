@@ -2,6 +2,7 @@ var index = 0;
 var current = 1;
 var totalQuestions = 0;
 var arrayOfQuestions = [];
+var arrayOfResults = [];
 
 // jquery onload
 $(function () {
@@ -10,11 +11,8 @@ $(function () {
     $('#next_button').click(function (e) {
 
         showQuiz();
-        
-        //solution to prevent double-click source: https://stackoverflow.com/questions/1414365/disable-enable-an-input-with-jquery
-        //$(this).find(':submit').attr('disabled','disabled'); 
-        
-        getQuiz(e); 
+        getQuizQuestions(e); 
+
     });
 
     radioHandler = (e)=>{
@@ -26,6 +24,9 @@ $(function () {
 
     // Actions when pressing next on the quiz
     $('#nextOnQuiz').click(function (e) {
+
+        // update variables for purpose of displaying progress to user and 
+        // selecting the next question from the array
         index++;
         current++;
         $('#statement').text(arrayOfQuestions[index]);
@@ -34,10 +35,14 @@ $(function () {
         // reset radio buttons
         $("input:checked").prop("checked", false);
 
+        // store results in array
+        // or maybe i should use classes for the question and question code?
+
         // if all questions answered
         if(current > totalQuestions){
             $('#quizRadioButtons').addClass('hidden');
             $('#quizHeader').text("Results");
+            $('#statement').text("Maybe I shoud put something here");
            // calculate results and display parties
         }
 
@@ -67,7 +72,7 @@ function showQuiz(){
 
 
 
-function getQuiz(e){
+function getQuizQuestions(e){
 
     // Get IDs of selected items
     var arrayOfSelected = $('.selected').map(function(){
@@ -96,10 +101,10 @@ function getQuiz(e){
         success: function (response) {
 
             // do something with results
-            
+
             console.log(response);
             totalQuestions = response.length;
-            $('#statement').text(response[index]);
+            $('#statement').text(response[0]);
             $('#quizHeader').text("Question "+current+" / "+totalQuestions);
 
             for(var i in response){

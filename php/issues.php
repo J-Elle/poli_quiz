@@ -98,6 +98,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
 
             case "Healthcare":
                 array_push($questionsReturned, "More money should be invested in the public healthcare system");
+                array_push($questionsReturned, "Australia should support euthanasia options to allow a certain criteria of people to die with dignity");
+                array_push($questionsReturned, "5G telecommuncations towers pose a health risk to communities and should not be installed");
+
                 break;
 
             case "Education":
