@@ -83,7 +83,7 @@ function populateQuestion(data){
 
 // Function appends each topic item into the html
 function showTopics(item){
-    $('#box_of_issues').append('<div id="'+item+'" class="issues">'+item+'</div>');
+    $('#main_content_box').append('<div id="'+item+'" class="issues">'+item+'</div>');
 }
 
 

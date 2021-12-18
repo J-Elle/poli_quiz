@@ -16,7 +16,7 @@ $issues = array(
     "Education",
     "Childcare",
     "Aged pension",
-    "Jobseeker",
+    "Welfare",
     "Housing",
     "Investing",
     "Real Estate & Property",
@@ -51,7 +51,10 @@ $issues = array(
     "Animal Welfare",
     "NBN",
     "Disability",
-    "Aging & Elderly"
+    "Aging & Elderly",
+    "Foreign Ownership",
+    "Privitisation",
+    "Corruption"
 );
 
 // if a get request
@@ -62,6 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST"){
 
 
 
+// If POST Request - will need to narrow scope further
 
 if ($_SERVER["REQUEST_METHOD"] === "POST"){
     $array = json_decode($_POST['selectedIssues'], true);
@@ -69,20 +73,198 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
     $questionsReturned = [];
 
     foreach($array as $value) {
-        
-        /*
-        if ($value === "NBN"){
-           array_push($questionsReturned, "TEST");
-        } else {
-            //echo json_encode("DONE");
-        }
-        */
-
-        
+                
         switch ($value) {
-            case "NBN":
-                array_push($questionsReturned, "NBN Added");    
+            
+            case "Australian Culture":
+                array_push($questionsReturned, "A Added");    
                 break;
+
+            case "Immigration":
+                array_push($questionsReturned, "B Added");    
+                break;
+
+            case "Climate Change":
+                array_push($questionsReturned, "A Added");    
+                break;
+            
+            case "Government Spending":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "Environment":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "Healthcare":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "Education":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "Childcare":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "Aged pension":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "Welfare":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "Housing":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "Investing":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "Real Estate & Property":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "Freedom":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "Future and Technology":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "Digital Currency":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "Drug Legalisation":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "Mental Health":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "LGBTQ+":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "Gender Identity":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "Tradition":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "Religion":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "Parental Rights":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "Medicare":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "Employment":
+                array_push($questionsReturned, "A Added");    
+                break;
+        
+            case "Mens Rights":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "Womens Rights":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "Entertainment & Arts":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "Economy":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "Foreign aid":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "Tax":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "Government Surveillance":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "Defence":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "Covid":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "Roads & Transport":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "Mining":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "Indigenous":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "Agriculture & Farming":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "Rural & Regional":
+                array_push($questionsReturned, "A Added");    
+                break;
+            
+            case "Natural Disasters":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "Animal Welfare":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "NBN":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "Disability":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "Aging & Elderly":
+                array_push($questionsReturned, "A Added");    
+                break;
+            
+            case "Foreign Ownership":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "Privitisation":
+                array_push($questionsReturned, "A Added");    
+                break;
+
+            case "Corruption":
+                array_push($questionsReturned, "A Added");    
+                break;
+            
+
             default:
                 //
         }

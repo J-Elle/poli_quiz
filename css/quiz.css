@@ -34,19 +34,12 @@ body{
     margin-bottom: 25px;
 }
 
-#box_of_issues{
+#main_content_box{
     margin: 5% 10%;
 }
 
 
-.hidden {
-    display: none;
-}
-
-.centered {
-    display: flex;
-    justify-content: center;
-}
+/*********************** ISSUES LANDING PAGE ***************************/
 
 
 /* gradients source: https://stackoverflow.com/questions/5706963/possible-to-use-border-radius-together-with-a-border-image-which-has-a-gradient */
@@ -113,4 +106,44 @@ body{
     color: white;
     cursor: pointer;
     background-clip: padding-box;
+
+}
+
+
+/******************************* QUIZ ********************************/
+
+.quizBorder {
+    border: 2px solid #000;
+    border-radius: 10px;
+}
+
+#quizHeader {
+    margin: 1% 2% 3%;
+}
+
+#statement {
+    justify-content: center;
+    text-align: center;
+    margin: 2%;  
+}
+
+
+.quizContent{
+    padding: 5px;
+}
+
+
+
+
+
+
+/*************** GENERAL ********************/
+
+.centered {
+    display: flex;
+    justify-content: center;
+}
+
+.hidden {
+    display: none;
 }

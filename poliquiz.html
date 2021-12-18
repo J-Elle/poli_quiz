@@ -25,8 +25,24 @@
 <body>
 <h1 id="page_title">Poli-Quiz</h1>
 <div id="instructions"> Select 5 issues that matter the most to you, whether you feel positively or negatively about it</div>
-<div id="box_of_issues">
+<div id="main_content_box">
     <!--ISSUES LOADED IN HERE-->
+
+    <h2 id="quizHeader"></h2>
+    <div id="statement"></div>
+    
+    <form id="quizRadioButtons" class="hidden">
+        <input type="radio" id="stronglyAgree" name="opinion" value="stronglyAgree">
+        <label for="stronglyAgree">Strongly Agree</label><br>
+        <input type="radio" id="somewhatAgree" name="opinion" value="somewhatAgree">
+        <label for="somewhatAgree">Somewhat Agree</label><br>
+        <input type="radio" id="neutral" name="opinion" value="neutral">
+        <label for="neutral">Neutral</label><br>
+        <input type="radio" id="somewhatDisagree" name="opinion" value="somewhatDisagree">
+        <label for="somewhatDisagree">Somewhat Disagree</label><br>
+        <input type="radio" id="stronglyDisagree" name="opinion" value="stronglyDisagree">
+        <label for="stronglyDisagree">Strongly Disagree</label><br>
+    </form>
 </div>
 <div id="next_box" class="centered"> 
     <button id="next_button" class="hidden" type="submit">NEXT</button>

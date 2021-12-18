@@ -3,6 +3,8 @@ $(function () {
 
     // Callback function to prevent default submit and instead use AJAX to make a http request
     $('#next_button').click(function (e) {
+
+        showQuiz();
         
         //solution to prevent double-click source: https://stackoverflow.com/questions/1414365/disable-enable-an-input-with-jquery
         //$(this).find(':submit').attr('disabled','disabled'); 
@@ -11,6 +13,23 @@ $(function () {
     });
    
 })
+
+function showQuiz(){
+
+    // Hide issues content
+    $('#next_button').addClass('hidden');
+    $('.issues').addClass('hidden');
+
+    // Load quiz structures
+    $('#main_content_box').addClass('quizBorder');
+    $('#quizHeader').append("Question");
+    $('#statement').append('<div id="quizFormContainer" class="quizContent">'+"I like cats "+'</div>');
+    $('#quizRadioButtons').removeClass('hidden');
+}
+
+
+
+
 
 function getQuiz(e){
 
