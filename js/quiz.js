@@ -104,11 +104,21 @@ function getQuizQuestions(e){
 
             console.log(response);
             totalQuestions = response.length;
-            $('#statement').text(response[0]);
+
+            /*
+            *   In PHP file now going to send the data over as objects in an array
+            *   Already getting encoded in JSON at end of file
+            *   Need to figure out how to copy to regular array on this side or something
+            */
+
+            //$('#statement').text(response[0];
             $('#quizHeader').text("Question "+current+" / "+totalQuestions);
 
             for(var i in response){
-                arrayOfQuestions.push([response [i]]);
+                
+                //var q = i.getQuestion(); // PHP class function, not JS!!
+                
+                //arrayOfQuestions.push([response [i]]);
             }
 
         },
