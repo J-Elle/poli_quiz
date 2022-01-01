@@ -99,12 +99,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
                 break;
 
             case "Healthcare":
-                $Y1 = new QuestionRegistry("Y1", "More money should be invested in the public healthcare system");
-                array_push($questionsReturned, $Y1);
-
-                //array_push($questionsReturned, "More money should be invested in the public healthcare system");
-                //array_push($questionsReturned, "Australia should support euthanasia options to allow a certain criteria of people to die with dignity");
-                //array_push($questionsReturned, "5G telecommuncations towers pose a health risk to communities and should not be installed");
+                //$Y1 = new QuestionRegistry("Y1", "More money should be invested in the public healthcare system"); // CLASS?
+                $questionsReturned["Y1"] = "Test Question Associative";
+                array_push($questionsReturned, "More money should be invested in the public healthcare system");
+                array_push($questionsReturned, "Australia should support euthanasia options to allow a certain criteria of people to die with dignity");
+                array_push($questionsReturned, "5G telecommuncations towers pose a health risk to communities and should not be installed");
 
                 break;
 
@@ -113,11 +112,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
                 break;
 
             case "Childcare":
-                array_push($questionsReturned, "A Added");    
+                $questionsReturned["Z1"] = "Test Question Associative Z1";    
                 break;
 
             case "Welfare":
-                array_push($questionsReturned, "A Added");    
+                $questionsReturned["X1"] = "Test Question Associative X1";    
                 break;
 
             case "Housing":

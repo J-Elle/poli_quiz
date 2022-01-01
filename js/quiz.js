@@ -3,34 +3,46 @@ var current = 1;
 var totalQuestions = 0;
 var arrayOfQuestions = [];
 var arrayOfResults = [];
+var clonedObj;
 
 // jquery onload
 $(function () {
 
-    // Callback function to prevent default submit and instead use AJAX to make a http request
+    // Callback function to unveil quiz and retrieve and display questions
     $('#next_button').click(function (e) {
-
         showQuiz();
-        getQuizQuestions(e); 
-
+        getQuizQuestions(e);
     });
 
-    radioHandler = (e)=>{
-        if($(e).prop("checked")){
-          $("#nextOnQuiz").removeAttr('disabled')
+
+    // Ensures a radio button is selected before allowing next button to be clicked
+    radioHandler = (e) => {
+        if ($(e).prop("checked")) {
+            $("#nextOnQuiz").removeAttr('disabled')
         }
-      }
+    }
 
 
+    ///////////////////////////// NEXT BUTTON /////////////////////////////////////
     // Actions when pressing next on the quiz
     $('#nextOnQuiz').click(function (e) {
 
-        // update variables for purpose of displaying progress to user and 
-        // selecting the next question from the array
+        // update question progress 0/3
         index++;
         current++;
-        $('#statement').text(arrayOfQuestions[index]);
-        $('#quizHeader').text("Question "+current+" / "+totalQuestions);
+        $('#quizHeader').text("Question " + current + " / " + totalQuestions);
+
+        // if all questions answered
+        if (current > totalQuestions) {
+            $('#quizRadioButtons').addClass('hidden');
+            $('#quizHeader').text("Results");
+            $('#statement').text("Maybe I shoud put something here");
+            return 0;
+            // calculate results and display parties
+        }
+
+        // select the next question from the array
+        $('#statement').text(arrayOfResults[index].question);
 
         // reset radio buttons
         $("input:checked").prop("checked", false);
@@ -38,23 +50,12 @@ $(function () {
         // store results in array
         // or maybe i should use classes for the question and question code?
 
-        // if all questions answered
-        if(current > totalQuestions){
-            $('#quizRadioButtons').addClass('hidden');
-            $('#quizHeader').text("Results");
-            $('#statement').text("Maybe I shoud put something here");
-           // calculate results and display parties
-        }
-
-
     });
-   
-
 
 })
 
-
-function showQuiz(){
+///////////////////// QUIZ CSS REVEAL //////////////////////////
+function showQuiz() {
 
     // Hide issues content
     $('#next_button').addClass('hidden');
@@ -64,34 +65,33 @@ function showQuiz(){
     // Load quiz structures
     $('#main_content_box').addClass('quizBorder');
     $('#quizHeader').append("Question");
-    $('#statement').append('<div id="quizFormContainer" class="quizContent">'+"I like cats "+'</div>');
+    $('#statement').append('<div id="quizFormContainer" class="quizContent">' + "I like cats " + '</div>');
     $('#quizRadioButtons').removeClass('hidden');
 }
 
 
 
-
-
-function getQuizQuestions(e){
+////////////////////////// GET QUESTIONS FROM SERVER ////////////////////////////////////
+function getQuizQuestions(e) {
 
     // Get IDs of selected items
-    var arrayOfSelected = $('.selected').map(function(){
+    var arrayOfSelected = $('.selected').map(function () {
         return this.id;
     }).get();
 
     console.log(arrayOfSelected);
-    
+
     // JSON stringify the issues
     $stringIssues = JSON.stringify(arrayOfSelected);
-    
+
 
     // serialize results from selections to a var
     // send the var in the ajax
 
     // AJAX -- do I want to sanitize anything first??
-    
-     // AJAX call to get correct answer
-     $.ajax({
+
+    // AJAX call to get correct answer
+    $.ajax({
         url: "http://localhost/janellesprojects/poliquiz/php/issues.php",
         data: {
             'selectedIssues': $stringIssues,
@@ -103,7 +103,7 @@ function getQuizQuestions(e){
             // do something with results
 
             console.log(response);
-            totalQuestions = response.length;
+
 
             /*
             *   In PHP file now going to send the data over as objects in an array
@@ -111,15 +111,43 @@ function getQuizQuestions(e){
             *   Need to figure out how to copy to regular array on this side or something
             */
 
-            //$('#statement').text(response[0];
-            $('#quizHeader').text("Question "+current+" / "+totalQuestions);
+            // Object copy of the response PHP associative array
+            clonedObj = JSON.parse(JSON.stringify(response));
+            console.log(clonedObj);
 
-            for(var i in response){
-                
-                //var q = i.getQuestion(); // PHP class function, not JS!!
-                
-                //arrayOfQuestions.push([response [i]]);
+            // for each entry in the response array received, copy to arrayOfQuestions for use in JS
+            for (var i in response) {
+                arrayOfQuestions.push([response[i]]);
             }
+
+
+
+            
+            for (var k in response){
+                if (response.hasOwnProperty(k)) {
+                     //alert("Key is " + k + ", value is " + response[k]);
+
+                     const qObject = new Object();
+                     qObject.code = k;
+                     qObject.question = response[k];
+                     qObject.result;
+                     console.log(qObject);
+                     arrayOfResults.push(qObject);                      
+                }
+            }
+
+            //console.log(arrayOfResults[0].code);
+
+        
+
+
+            console.log(arrayOfQuestions);
+            totalQuestions = arrayOfQuestions.length;
+
+            //$('#statement').text(arrayOfQuestions[0]);
+            $('#statement').text(arrayOfResults[0].question);
+            $('#quizHeader').text("Question " + current + " / " + totalQuestions);
+
 
         },
         error: function (xhr) {
@@ -127,7 +155,7 @@ function getQuizQuestions(e){
         }
     });
 
-    
+
 
 
 
