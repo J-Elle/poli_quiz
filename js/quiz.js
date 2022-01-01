@@ -27,19 +27,30 @@ $(function () {
     // Actions when pressing next on the quiz
     $('#nextOnQuiz').click(function (e) {
 
+        
+
+        // retreive radio values
+        var radioValue = $("input[name='opinion']:checked").val();
+        arrayOfResults[index].result = radioValue;
+        console.log(radioValue);
+
         // update question progress 0/3
         index++;
         current++;
         $('#quizHeader').text("Question " + current + " / " + totalQuestions);
+
 
         // if all questions answered
         if (current > totalQuestions) {
             $('#quizRadioButtons').addClass('hidden');
             $('#quizHeader').text("Results");
             $('#statement').text("Maybe I shoud put something here");
+            // ajax function to send data back
+            console.log(arrayOfResults);
             return 0;
-            // calculate results and display parties
+            
         }
+
 
         // select the next question from the array
         $('#statement').text(arrayOfResults[index].question);
@@ -79,7 +90,6 @@ function getQuizQuestions(e) {
         return this.id;
     }).get();
 
-    console.log(arrayOfSelected);
 
     // JSON stringify the issues
     $stringIssues = JSON.stringify(arrayOfSelected);
@@ -111,9 +121,6 @@ function getQuizQuestions(e) {
             *   Need to figure out how to copy to regular array on this side or something
             */
 
-            // Object copy of the response PHP associative array
-            clonedObj = JSON.parse(JSON.stringify(response));
-            console.log(clonedObj);
 
             // for each entry in the response array received, copy to arrayOfQuestions for use in JS
             for (var i in response) {
@@ -122,26 +129,28 @@ function getQuizQuestions(e) {
 
 
 
-            
+            // PHP response converted to an array of objects
+           
+            /* arrayOfResults[] contains objects:
+           
+            qObject--> 
+                code: Y1 
+                question: Why does ... ? 
+                Result: To populate            
+            */
+
             for (var k in response){
                 if (response.hasOwnProperty(k)) {
-                     //alert("Key is " + k + ", value is " + response[k]);
-
                      const qObject = new Object();
                      qObject.code = k;
                      qObject.question = response[k];
                      qObject.result;
-                     console.log(qObject);
                      arrayOfResults.push(qObject);                      
                 }
             }
 
-            //console.log(arrayOfResults[0].code);
 
-        
-
-
-            console.log(arrayOfQuestions);
+            //console.log(arrayOfQuestions);
             totalQuestions = arrayOfQuestions.length;
 
             //$('#statement').text(arrayOfQuestions[0]);
