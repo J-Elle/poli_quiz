@@ -99,8 +99,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
                 break;
 
             case "Healthcare":
-                //$Y1 = new QuestionRegistry("Y1", "More money should be invested in the public healthcare system"); // CLASS?
+                // USE THIS FORMAT
                 $questionsReturned["Y1"] = "Test Question Associative";
+                
+                // CHANGE TO ABOVE FORMAT 
                 array_push($questionsReturned, "More money should be invested in the public healthcare system");
                 array_push($questionsReturned, "Australia should support euthanasia options to allow a certain criteria of people to die with dignity");
                 array_push($questionsReturned, "5G telecommuncations towers pose a health risk to communities and should not be installed");

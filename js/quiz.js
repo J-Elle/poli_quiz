@@ -46,7 +46,7 @@ $(function () {
             $('#quizHeader').text("Results");
             $('#statement').text("Maybe I shoud put something here");
             // ajax function to send data back
-            console.log(arrayOfResults);
+            sendResults();
             return 0;
             
         }
@@ -57,9 +57,6 @@ $(function () {
 
         // reset radio buttons
         $("input:checked").prop("checked", false);
-
-        // store results in array
-        // or maybe i should use classes for the question and question code?
 
     });
 
@@ -79,6 +76,7 @@ function showQuiz() {
     $('#statement').append('<div id="quizFormContainer" class="quizContent">' + "I like cats " + '</div>');
     $('#quizRadioButtons').removeClass('hidden');
 }
+
 
 
 
@@ -114,14 +112,6 @@ function getQuizQuestions(e) {
 
             console.log(response);
 
-
-            /*
-            *   In PHP file now going to send the data over as objects in an array
-            *   Already getting encoded in JSON at end of file
-            *   Need to figure out how to copy to regular array on this side or something
-            */
-
-
             // for each entry in the response array received, copy to arrayOfQuestions for use in JS
             for (var i in response) {
                 arrayOfQuestions.push([response[i]]);
@@ -145,15 +135,14 @@ function getQuizQuestions(e) {
                      qObject.code = k;
                      qObject.question = response[k];
                      qObject.result;
+                     console.log(qObject);
                      arrayOfResults.push(qObject);                      
                 }
             }
 
 
-            //console.log(arrayOfQuestions);
             totalQuestions = arrayOfQuestions.length;
 
-            //$('#statement').text(arrayOfQuestions[0]);
             $('#statement').text(arrayOfResults[0].question);
             $('#quizHeader').text("Question " + current + " / " + totalQuestions);
 
@@ -164,9 +153,32 @@ function getQuizQuestions(e) {
         }
     });
 
+}
 
+////////////////////// SEND RESULTS BACK ///////////////////////////////
+function sendResults() { 
+    console.log(arrayOfResults);
+    $stringResults = JSON.stringify(arrayOfResults);
+    //console.log($stringResults);
+    
+    
+    $.ajax({
+        url: "http://localhost/janellesprojects/poliquiz/php/process_results.php",
+        data: {
+            'results': $stringResults,
+        },
+        cache: false,
+        type: "POST",
+        success: function (response) {
 
+            // do something with results
 
+            console.log(response);
 
+        },
+        error: function (xhr) {
+            console.log("ERROR: " + xhr.error);
+        }
+    });
 
 }
