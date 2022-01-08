@@ -10,22 +10,29 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
 
     $results= [];
 
-    foreach($array as $value) {
-                
-        switch ($value) {
+    foreach($array as $value => $code) { 
+        foreach($code as $x){
+
+            switch ($x) {
             
-            case "X1":
-                array_push($results, "100");    
-                // CALCULATIONS
-                break;
-
-            case "Z1":
-                array_push($results, "80");    
-                break;
-
-            default:
-                array_push($results, "70");
+                case "X1":
+                    array_push($results, "100");    
+                    // CALCULATIONS
+                    break;
+    
+                case "Z1":
+                    array_push($results, "80");    
+                    break;
+                
+                default:
+                    // do nothing
+            }
         }
+        // How do I access it???
+        // 
+        
+        
+        
         
     }
     // Send something back
