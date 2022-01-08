@@ -6,52 +6,50 @@ header('Access-Control-Allow-Origin: *');
 // VARIABLES TO SCORE RUNNING TOTAL
 
 $results= array(
-    "animalJustice" => 0
-/*
-$australiaFirst = 0;
-$australianAffordableHousing = 0;
-$australianChristians = 0;
-$australianCitizens = 0;
-$australianDemocrats = 0;
-$australianFederation = 0;
-$australianGreens = 0;
-$australianLaborParty = 0;
-$australianProgressives = 0;
-$centreAlliance = 0;
-$christianDemocratic = 0;
-$climateEmergancy = 0;
-$countryLiberal = 0;
-$democraticLabour = 0;
-$derrynHinch = 0;
-$federalICAC = 0;
-$healthAustralia = 0;
-$hemp = 0;
-$independentsCan = 0;
-$informedMedicalOptions = 0;
-$jaquiLambie = 0;
-$kattersAustralian = 0;
-$liberalDemocratic = 0;
-$liberalParty = 0;
-$loveAustraliaOrLeave = 0;
-$nationalParty = 0;
-$no5G = 0;
-$oneNation = 0;
-$reasonAustralia = 0;
-$rexPatrick = 0;
-$scienceParty = 0;
-$secularParty = 0;
-$shootersFishers = 0;
-$sociallistAlliance = 0;
-$socialistEquality = 0;
-$sustainableAustralia = 0;
-$greatAustralian = 0;
-$newLiberals = 0;
-$transportMatters = 0;
-$unitedAustralia = 0;
-$voteFlux = 0;
-$victorianSocialists = 0;
-$westernAustralia = 0;
-*/
+    "Animal Justice Party" => 0,
+    "Australia First Party (NSW) Incorporated" => 0,
+    "Australian Affordable Housing Party" => 0,
+    "Australian Christians" => 0,
+    "Australian Citizens Party" => 0,
+    "Australian Democrats" => 0,
+    "Australian Federation Party" => 0,
+    "Australian Greens" => 0,
+    "Australian Labor Party (ALP)" => 0,
+    "Australian Progressives" => 0,
+    "Centre Alliance" => 0,
+    "Christian Democratic Party (Fred Nile Group)" => 0,
+    "Climate Emergancy Action Alliance: Vote Planet" => 0,
+    "Country Liberal Party (NT)" => 0,
+    "Democratic Labour Party" => 0,
+    "Derryn Hinch's Justice Party" => 0,
+    "Federal ICAC Now" => 0,
+    "Health Australia Party" => 0,
+    "Independents CAN" => 0,
+    "Indigenous - Aboriginal Party of Australia" => 0,
+    "Informed Medical Options Party" => 0,
+    "Jaqui Lambie Network" => 0,
+    "Katter's Australian Party (KAP)" => 0,
+    "Legalise Cannabis Australia" => 0,
+    "Liberal Democratic Party" => 0,
+    "Liberal Party of Australia" => 0,
+    "Love Australia or Leave" => 0,
+    "National Party of Australia" => 0,
+    "No5G Party" => 0,
+    "Pauline Hanson's One Nation" => 0,
+    "Reason Australia" => 0,
+    "Rex Patrick Team" => 0,
+    "Science Party" => 0,
+    "Secular Party of Australia" => 0,
+    "Seniors United Party of Australia" => 0,
+    "Shooters, Fishers and Farmers Party" => 0,
+    "Sociallist Alliance" => 0,
+    "Socialist Equality Party" => 0,
+    "Sustainable Australia Party - Stop Overdevelopment/Corruption" => 0,
+    "The Great Australian Party" => 0,
+    "United Australia Party" => 0,
+    "VOTEFLUX.ORG | Upgrade Democracy!" => 0,
+    "Victorian Socialists" => 0,
+    "Western Australia Party" => 0
 );
 
 
@@ -105,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
                 switch($answer['result']){
                     case "stronglyAgree":
                         // do something 
-                        $results['animalJustice']++;
+                        $results['No5G Party'] += 1;
                         break;
                     case "somewhatAgree":
                         // do something
@@ -134,18 +132,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
                 // do nothing
         }
     
-        
-    /*
-    $results = array_push_assoc($results, $australiaFirst, $australiaFirst);
-
-
-    function array_push_assoc($array, $key, $value){
-        $array[$key] = $value;
-        return $array;
-     }
-    */
-        
     }
+
+
+    arsort($results);
     // Send something back
     echo json_encode($results);
 }

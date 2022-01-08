@@ -44,7 +44,7 @@ $(function () {
         if (current > totalQuestions) {
             $('#quizRadioButtons').addClass('hidden');
             $('#quizHeader').text("Results");
-            $('#statement').text("Maybe I shoud put something here");
+            $('#statement').text("");
             // ajax function to send data back
             sendResults();
             return 0;
@@ -174,6 +174,29 @@ function sendResults() {
             // do something with results
 
             console.log(response);
+            //const obj = JSON.parse(response);
+
+            ul = document.createElement('ul');
+
+            // append a list
+            document.getElementById('statement').appendChild(ul);
+            
+            Object.keys(response).forEach(function (key){
+                //console.log(response[key]);
+                let li = document.createElement('li');
+                ul.appendChild(li);
+            
+                li.innerHTML += key;
+            });
+
+            /*
+            response.forEach(function(item) {
+                let li = document.createElement('li');
+                ul.appendChild(li);
+            
+                li.innerHTML += item;
+            });
+            */
 
         },
         error: function (xhr) {
