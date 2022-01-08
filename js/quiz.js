@@ -32,7 +32,7 @@ $(function () {
         // retreive radio values
         var radioValue = $("input[name='opinion']:checked").val();
         arrayOfResults[index].result = radioValue;
-        console.log(radioValue);
+        //console.log(radioValue);
 
         // update question progress 0/3
         index++;
@@ -157,9 +157,9 @@ function getQuizQuestions(e) {
 
 ////////////////////// SEND RESULTS BACK ///////////////////////////////
 function sendResults() { 
-    console.log(arrayOfResults);
+    //console.log(arrayOfResults);
     $stringResults = JSON.stringify(arrayOfResults);
-    //console.log($stringResults);
+    console.log($stringResults);
     
     
     $.ajax({
