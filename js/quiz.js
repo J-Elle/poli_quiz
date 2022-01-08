@@ -27,7 +27,7 @@ $(function () {
     // Actions when pressing next on the quiz
     $('#nextOnQuiz').click(function (e) {
 
-        
+
 
         // retreive radio values
         var radioValue = $("input[name='opinion']:checked").val();
@@ -48,7 +48,7 @@ $(function () {
             // ajax function to send data back
             sendResults();
             return 0;
-            
+
         }
 
 
@@ -120,7 +120,7 @@ function getQuizQuestions(e) {
 
 
             // PHP response converted to an array of objects
-           
+
             /* arrayOfResults[] contains objects:
            
             qObject--> 
@@ -129,14 +129,14 @@ function getQuizQuestions(e) {
                 Result: To populate            
             */
 
-            for (var k in response){
+            for (var k in response) {
                 if (response.hasOwnProperty(k)) {
-                     const qObject = new Object();
-                     qObject.code = k;
-                     qObject.question = response[k];
-                     qObject.result;
-                     console.log(qObject);
-                     arrayOfResults.push(qObject);                      
+                    const qObject = new Object();
+                    qObject.code = k;
+                    qObject.question = response[k];
+                    qObject.result;
+                    console.log(qObject);
+                    arrayOfResults.push(qObject);
                 }
             }
 
@@ -156,12 +156,12 @@ function getQuizQuestions(e) {
 }
 
 ////////////////////// SEND RESULTS BACK ///////////////////////////////
-function sendResults() { 
+function sendResults() {
     //console.log(arrayOfResults);
     $stringResults = JSON.stringify(arrayOfResults);
     console.log($stringResults);
-    
-    
+
+
     $.ajax({
         url: "http://localhost/janellesprojects/poliquiz/php/process_results.php",
         data: {
@@ -180,23 +180,25 @@ function sendResults() {
 
             // append a list
             document.getElementById('statement').appendChild(ul);
-            
-            Object.keys(response).forEach(function (key){
-                //console.log(response[key]);
+
+            Object.keys(response).forEach(function (key) {
                 let li = document.createElement('li');
                 ul.appendChild(li);
-            
+
                 li.innerHTML += key;
+
+                let arrowContainer = document.createElement('div');
+                arrowContainer.classList.add("arrowContainer");
+                li.appendChild(arrowContainer);
+
+                // add arrow image to each tile
+                var img = document.createElement("img");
+                img.src = "../poliquiz/img/arrow.png";
+                img.style.width = '25px';
+                img.style.height = 'auto';
+                arrowContainer.appendChild(img);
             });
 
-            /*
-            response.forEach(function(item) {
-                let li = document.createElement('li');
-                ul.appendChild(li);
-            
-                li.innerHTML += item;
-            });
-            */
 
         },
         error: function (xhr) {
