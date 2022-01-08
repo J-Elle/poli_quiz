@@ -63,7 +63,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
     // copy returned json into an array?
     $array = json_decode($_POST['results'], true);
 
-    
+    ///////////////////////////////////////////////////////////////////
+    // NEED TO CREATE DATABASE - BASICALLY SAME AS EXCEL SPREADSHEET //
+    ///////////////////////////////////////////////////////////////////
 
     foreach($array as $value => $answer) { 
 
@@ -97,6 +99,83 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
             
             // END TEMPLATE *******************************************
             
+            case "A1":   
+                
+                switch($answer['result']){
+                    case "stronglyAgree":
+                        // do something 
+                        $results['No5G Party'] += 1;
+                        break;
+                    case "somewhatAgree":
+                        // do something
+                        break;
+                    case "neutral":
+                        // do something
+                        break;
+                    case "somewhatDisagree":
+                        // do something
+                        break;
+                    case "stronglyDisagree":
+                        // do something
+                        break;
+                    default:
+                        // log error
+                }
+
+            break;
+
+            case "B1":   
+                
+                switch($answer['result']){
+                    case "stronglyAgree":
+                        // do something 
+                        $results['No5G Party'] += 1;
+                        break;
+                    case "somewhatAgree":
+                        // do something
+                        break;
+                    case "neutral":
+                        // do something
+                        break;
+                    case "somewhatDisagree":
+                        // do something
+                        break;
+                    case "stronglyDisagree":
+                        // do something
+                        break;
+                    default:
+                        // log error
+                }
+
+            break;
+
+
+            case "B2":   
+                
+                switch($answer['result']){
+                    case "stronglyAgree":
+                        // do something 
+                        $results['No5G Party'] += 1;
+                        break;
+                    case "somewhatAgree":
+                        // do something
+                        break;
+                    case "neutral":
+                        // do something
+                        break;
+                    case "somewhatDisagree":
+                        // do something
+                        break;
+                    case "stronglyDisagree":
+                        // do something
+                        break;
+                    default:
+                        // log error
+                }
+
+            break;
+
+
 
             case "X1":   
                 
