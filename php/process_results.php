@@ -3,6 +3,9 @@
 header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: *');
 
+// Link database
+include_once 'db.php';
+
 // VARIABLES TO SCORE RUNNING TOTAL
 
 $results= array(
