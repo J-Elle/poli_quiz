@@ -49,48 +49,6 @@ body{
     /*border: 2px solid red;*/
 }
 
-/*
-
-#statement li {
-    width: auto;
-    height: 57.735px;
-    position: relative;
-    margin: 10% 0%;
-    padding: 0.2% 2%;
-    border: 2px solid rgba(0,222,170);
-    line-height: 57.735px;
-  }
-  #statement li::before {
-    content: "";
-    position: absolute;
-    top: -22.8675px;
-    left: 0;
-    right: 0;
-    width: 100px;
-    margin-left: auto;
-    margin-right: auto;
-    height: 0;
-    border-left: 50px solid transparent;
-    border-right: 50px solid transparent;
-    border-bottom: 22.8675px solid rgba(0,222,170);
-  }
-  #statement li::after {
-    content: "";
-    position: absolute;
-    bottom: -22.8675px;
-    left: 0;
-    right: 0;
-    width: 100px;
-    margin-left: auto;
-    margin-right: auto;
-    height: 0;
-    border-left: 50px solid transparent;
-    border-right: 50px solid transparent;
-    border-top: 22.8675px solid rgba(0,222,170);
-  }
-
-  */
-
 
 
 

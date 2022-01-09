@@ -100,7 +100,7 @@ function getQuizQuestions(e) {
 
     // AJAX call to get correct answer
     $.ajax({
-        url: "http://localhost/janellesprojects/poliquiz/php/issues.php",
+        url: "http://localhost/janellesprojects/thelazyvote/php/issues.php",
         data: {
             'selectedIssues': $stringIssues,
         },
@@ -163,7 +163,7 @@ function sendResults() {
 
 
     $.ajax({
-        url: "http://localhost/janellesprojects/poliquiz/php/process_results.php",
+        url: "http://localhost/janellesprojects/thelazyvote/php/process_results.php",
         data: {
             'results': $stringResults,
         },
@@ -193,7 +193,7 @@ function sendResults() {
 
                 // add arrow image to each tile
                 var img = document.createElement("img");
-                img.src = "../poliquiz/img/arrow.png";
+                img.src = "../thelazyvote/img/arrow.png";
                 img.style.width = '25px';
                 img.style.height = 'auto';
                 arrowContainer.appendChild(img);

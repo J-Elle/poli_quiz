@@ -27,7 +27,7 @@ var numItems;
 function loadQuestions() {
 
     
-    var jqxhr = $.get('http://localhost/janellesprojects/poliquiz/php/issues.php');
+    var jqxhr = $.get('http://localhost/janellesprojects/thelazyvote/php/issues.php');
 
     // if data returned successfully, populate the first question and load data to array
     jqxhr.done(function (data) {
