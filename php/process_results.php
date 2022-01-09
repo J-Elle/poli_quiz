@@ -6,6 +6,19 @@ header('Access-Control-Allow-Origin: *');
 // Link database
 include_once 'db.php';
 
+
+// SQL used
+$SQLgetResults = "SELECT * FROM parties WHERE questioncode=A1;";
+$result = mysqli_query($conn, $SQLgetResults);
+
+$resultCheck = mysqli_num_rows($result);
+if ($resultCheck > 0){
+    // if some results came back...
+}
+
+
+
+
 // VARIABLES TO SCORE RUNNING TOTAL
 
 $results= array(
