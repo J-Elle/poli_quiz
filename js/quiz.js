@@ -193,7 +193,7 @@ function sendResults() {
 
                 // add arrow image to each tile
                 var img = document.createElement("img");
-                img.src = "../thelazyvote/img/arrow.png";
+                img.src = "../thelazyvote/img/whitearrow.png";
                 img.style.width = '25px';
                 img.style.height = 'auto';
                 arrowContainer.appendChild(img);

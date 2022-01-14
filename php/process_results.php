@@ -7,21 +7,15 @@ header('Access-Control-Allow-Origin: *');
 include_once 'db.php';
 
 
-// SQL used
-$SQLgetResults = "SELECT * FROM parties WHERE questioncode=A1;";
-$result = mysqli_query($conn, $SQLgetResults);
 
-$resultCheck = mysqli_num_rows($result);
-if ($resultCheck > 0){
-    // if some results came back...
-}
+
 
 
 
 
 // VARIABLES TO SCORE RUNNING TOTAL
 
-$results= array(
+$govparties= array(
     "Animal Justice Party" => 0,
     "Australia First Party (NSW) Incorporated" => 0,
     "Australian Affordable Housing Party" => 0,
@@ -83,154 +77,68 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
     // NEED TO CREATE DATABASE - BASICALLY SAME AS EXCEL SPREADSHEET //
     ///////////////////////////////////////////////////////////////////
 
-    foreach($array as $value => $answer) { 
-
-        switch ($answer['code']) {
-            
-
-            // TEMPLATE **********************************************
-            case "TemplateOnly":   
-                
-                switch($answer['result']){
-                    case "stronglyAgree":
-                        // do something
-                        break;
-                    case "somewhatAgree":
-                        // do something
-                        break;
-                    case "neutral":
-                        // do something
-                        break;
-                    case "somewhatDisagree":
-                        // do something
-                        break;
-                    case "stronglyDisagree":
-                        // do something
-                        break;
-                    default:
-                        // log error
-                }
-
-            break;
-            
-            // END TEMPLATE *******************************************
-            
-            case "A1":   
-                
-                switch($answer['result']){
-                    case "stronglyAgree":
-                        // do something 
-                        $results['No5G Party'] += 1;
-                        break;
-                    case "somewhatAgree":
-                        // do something
-                        break;
-                    case "neutral":
-                        // do something
-                        break;
-                    case "somewhatDisagree":
-                        // do something
-                        break;
-                    case "stronglyDisagree":
-                        // do something
-                        break;
-                    default:
-                        // log error
-                }
-
-            break;
-
-            case "B1":   
-                
-                switch($answer['result']){
-                    case "stronglyAgree":
-                        // do something 
-                        $results['No5G Party'] += 1;
-                        break;
-                    case "somewhatAgree":
-                        // do something
-                        break;
-                    case "neutral":
-                        // do something
-                        break;
-                    case "somewhatDisagree":
-                        // do something
-                        break;
-                    case "stronglyDisagree":
-                        // do something
-                        break;
-                    default:
-                        // log error
-                }
-
-            break;
-
-
-            case "B2":   
-                
-                switch($answer['result']){
-                    case "stronglyAgree":
-                        // do something 
-                        $results['No5G Party'] += 1;
-                        break;
-                    case "somewhatAgree":
-                        // do something
-                        break;
-                    case "neutral":
-                        // do something
-                        break;
-                    case "somewhatDisagree":
-                        // do something
-                        break;
-                    case "stronglyDisagree":
-                        // do something
-                        break;
-                    default:
-                        // log error
-                }
-
-            break;
-
-
-
-            case "X1":   
-                
-                switch($answer['result']){
-                    case "stronglyAgree":
-                        // do something 
-                        $results['No5G Party'] += 1;
-                        break;
-                    case "somewhatAgree":
-                        // do something
-                        break;
-                    case "neutral":
-                        // do something
-                        break;
-                    case "somewhatDisagree":
-                        // do something
-                        break;
-                    case "stronglyDisagree":
-                        // do something
-                        break;
-                    default:
-                        // log error
-                }
-
-            break;
-
-
-            case "Z1":
-                //array_push($results, "80");    
-                break;
-                
-            default:
-                // do nothing
-        }
     
-    }
+    
 
 
-    arsort($results);
-    // Send something back
-    echo json_encode($results);
+    // check entire array for now
+    // Liberal => 0;
+    foreach($govparties as $partyname => $partyresults) { 
+       
+        // {"code":"Z1","question":"Test Question Associative Z1","result":"stronglyAgree"}            
+        foreach($array as $return_obj => $answers){
+
+            
+            // DATABASE QUERY
+
+            $userAnswer = $answers['result']; // e.g. stronglyAgree
+            $qcode = $answers['code']; // e.g. Z1
+            $p = $govparties[$partyname];
+            
+
+            // TODO ************************************** Fix the 'party' db query section
+
+            $SQLgetResults = "SELECT '$userAnswer' FROM parties WHERE questioncode='$qcode';"; // party selector playing up
+
+            // PARTY SELECTOR PLAYING UP
+            //$SQLgetResults = "SELECT '$userAnswer' FROM parties WHERE questioncode='$qcode';";   
+            //$SQLgetResults = "SELECT '$userAnswer' FROM parties WHERE party='$p' AND questioncode='$qcode';"; // NOT GETTING ANY RESULTS
+            //$SQLgetResults = "SELECT '$userAnswer' FROM parties WHERE party='$govparties[$partyname]' AND questioncode='$qcode';"; 
+            
+            $score = mysqli_query($conn, $SQLgetResults);
+
+            //$govparties[$partyname]+=10; // WORKS
+            
+            $resultCheck = mysqli_num_rows($score);
+            
+            
+            if ($resultCheck > 0){
+                // if some results came back...
+
+                //$govparties[$partyname]+=10;
+
+                // BREAKS IT
+                /*
+                while($row = mysql_fetch_array($score)){
+                    //$govparties[$partyname]+=$row['stronglyagree'];
+                    //$govparties[$partyname]+=$row['stronglyagree'];
+                    $govparties[$partyname]+=10;
+                }
+                */
+                   
+            }
+        } 
+      
+        
+    }    
+          
+    //arsort($govparties);
+    echo json_encode($govparties);
+
+    //echo json_encode($score);
+    //echo json_encode($resultCheck); // CHANGE BACK TO GOVPARTIES
+
 }
+
+
+    

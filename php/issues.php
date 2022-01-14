@@ -67,9 +67,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
     foreach($array as $value) {
                 
         switch ($value) {
+
+            case "Agriculture & Farming":
+                $questionsReturned["B5"] = "Australia should withdraw from free trade agreements";    
+                break;
             
             case "Australian Culture":
-                array_push($questionsReturned, "A Added");    
+                $questionsReturned["D1"] = "Australian Culture as it stands should be preserved, with limited or no lifestyle changes";   
                 break;
 
             case "Immigration":
@@ -219,9 +223,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
                 array_push($questionsReturned, "A Added");    
                 break;
 
-            case "Agriculture & Farming":
-                array_push($questionsReturned, "A Added");    
-                break;
 
             case "Rural & Regional":
                 array_push($questionsReturned, "A Added");    
