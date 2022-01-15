@@ -98,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
 
             // TODO ************************************** Fix the 'party' db query section
 
-            $SQLgetResults = "SELECT '$userAnswer' FROM parties WHERE questioncode='$qcode';"; // party selector playing up
+            $SQLgetResults = "SELECT $userAnswer FROM parties WHERE questioncode='$qcode';"; // party selector playing up
 
             // PARTY SELECTOR PLAYING UP
             //$SQLgetResults = "SELECT '$userAnswer' FROM parties WHERE questioncode='$qcode';";   
@@ -109,8 +109,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
 
             //$govparties[$partyname]+=10; // WORKS
             
-            $resultCheck = mysqli_num_rows($score);
-            
+            $resultCheck = mysqli_num_rows($score); 
+            $x = mysqli_fetch_array($score);
+            $govparties[$partyname]+=$x[0]; // works but is updating ALL
             
             if ($resultCheck > 0){
                 // if some results came back...
@@ -118,13 +119,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
                 //$govparties[$partyname]+=10;
 
                 // BREAKS IT
-                /*
-                while($row = mysql_fetch_array($score)){
-                    //$govparties[$partyname]+=$row['stronglyagree'];
-                    //$govparties[$partyname]+=$row['stronglyagree'];
-                    $govparties[$partyname]+=10;
+                
+                
+                while($row = mysqli_fetch_array($score)){
+                    
+                    //$id = intval($row['stronglyagree']);
+                    //$govparties[$partyname]+=intval($row['stronglyagree']);
+                    //$govparties[$partyname]+=10;
+                    //$govparties[$partyname]+=$x;
                 }
-                */
+                
                    
             }
         } 
@@ -134,7 +138,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
           
     //arsort($govparties);
     echo json_encode($govparties);
-
+    //echo json_encode($x);
     //echo json_encode($score);
     //echo json_encode($resultCheck); // CHANGE BACK TO GOVPARTIES
 
