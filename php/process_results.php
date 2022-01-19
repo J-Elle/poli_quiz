@@ -62,8 +62,9 @@ $govparties= array(
     "Western Australia Party" => 0
 );
 
-
-
+$testA = array(
+    "test" => 0
+);
 
 
 
@@ -80,6 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
     
     
 
+    
 
     // check entire array for now
     // Liberal => 0;
@@ -95,50 +97,37 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
             $qcode = $answers['code']; // e.g. Z1
             $p = $govparties[$partyname];
             
-
-            // TODO ************************************** Fix the 'party' db query section
-
-            $SQLgetResults = "SELECT $userAnswer FROM parties WHERE questioncode='$qcode';"; // party selector playing up
-
-            // PARTY SELECTOR PLAYING UP
-            //$SQLgetResults = "SELECT '$userAnswer' FROM parties WHERE questioncode='$qcode';";   
-            //$SQLgetResults = "SELECT '$userAnswer' FROM parties WHERE party='$p' AND questioncode='$qcode';"; // NOT GETTING ANY RESULTS
-            //$SQLgetResults = "SELECT '$userAnswer' FROM parties WHERE party='$govparties[$partyname]' AND questioncode='$qcode';"; 
-            
+            $a = 'test';
+            //$SQLgetResults = "SELECT $userAnswer FROM parties WHERE questioncode='$qcode';"; // WORKS
+            //$SQLgetResults = "SELECT $userAnswer FROM parties WHERE party=$partyname AND questioncode='$qcode';"; // NOT GETTING ANY RESULTS
+            //$SQLgetResults = "SELECT $userAnswer FROM parties WHERE party='$govparties[$partyname]' AND questioncode='$qcode';"; 
+            //$SQLgetResults = "SELECT $userAnswer FROM parties WHERE party='$a';"; //WORKS
+            $SQLgetResults = "SELECT $userAnswer FROM parties WHERE party='$p';"; // No Results 
+            //$SQLgetResults = "SELECT $userAnswer FROM parties WHERE party='test' AND questioncode='$qcode';"; 
+         
             $score = mysqli_query($conn, $SQLgetResults);
 
             //$govparties[$partyname]+=10; // WORKS
             
             $resultCheck = mysqli_num_rows($score); 
-            $x = mysqli_fetch_array($score);
-            $govparties[$partyname]+=$x[0]; // works but is updating ALL
-            
+
             if ($resultCheck > 0){
-                // if some results came back...
-
-                //$govparties[$partyname]+=10;
-
-                // BREAKS IT
-                
-                
-                while($row = mysqli_fetch_array($score)){
-                    
-                    //$id = intval($row['stronglyagree']);
-                    //$govparties[$partyname]+=intval($row['stronglyagree']);
-                    //$govparties[$partyname]+=10;
-                    //$govparties[$partyname]+=$x;
-                }
-                
-                   
+                // if some results came back...    
+                $x = mysqli_fetch_array($score);
+                $govparties[$partyname]+=$x[0]; // works but is updating ALL                   
             }
         } 
       
         
-    }    
+    }  
+    
+    
+
           
     //arsort($govparties);
     echo json_encode($govparties);
     //echo json_encode($x);
+    //echo json_encode($partyname);
     //echo json_encode($score);
     //echo json_encode($resultCheck); // CHANGE BACK TO GOVPARTIES
 
