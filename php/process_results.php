@@ -59,8 +59,7 @@ $govparties= array(
     "United Australia Party" => 0,
     "VOTEFLUX.ORG | Upgrade Democracy!" => 0,
     "Victorian Socialists" => 0,
-    "Western Australia Party" => 0,
-    "test" => 0
+    "Western Australia Party" => 0
 );
 
 $testA = array(
@@ -89,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
             $userAnswer = $answers['result']; // e.g. stronglyAgree
             $qcode = $answers['code']; // e.g. Z1
 
-            $SQLgetResults = "SELECT $userAnswer FROM parties WHERE party='$partyname' AND questioncode='$qcode';"; // NOT GETTING ANY RESULTS but also showing as a correct query in log
+            $SQLgetResults = "SELECT $userAnswer FROM parties WHERE party='$partyname' AND questioncode='$qcode';"; 
 
             // if answer is not neutral then update
             if($userAnswer != "neutral"){
@@ -101,9 +100,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
                 // if some results came back
                 if ($resultCheck > 0){
                     $integer = mysqli_fetch_array($score);
-                    if($integer[0]){
-                        $govparties[$partyname]+=$integer[0];                
-                    }
+                    $govparties[$partyname]+=$integer[0];                
+                    
                 }
             }
             
