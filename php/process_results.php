@@ -91,25 +91,24 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
 
             $SQLgetResults = "SELECT $userAnswer FROM parties WHERE party='$partyname' AND questioncode='$qcode';"; // NOT GETTING ANY RESULTS but also showing as a correct query in log
 
+            // if answer is not neutral then update
             if($userAnswer != "neutral"){
  
                 $score = mysqli_query($conn, $SQLgetResults);
             
                 $resultCheck = mysqli_num_rows($score); 
 
+                // if some results came back
                 if ($resultCheck > 0){
-                    // if some results came back...    
-                    $x = mysqli_fetch_array($score);
-                
-                    if($x[0]){
-                        $govparties[$partyname]+=$x[0]; // works but is updating ALL                 
+                    $integer = mysqli_fetch_array($score);
+                    if($integer[0]){
+                        $govparties[$partyname]+=$integer[0];                
                     }
                 }
             }
             
         } 
-      
-        
+            
     }  
     
     
@@ -117,13 +116,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
           
     arsort($govparties);
     echo json_encode($govparties);
-    //echo json_encode($p);
-    //echo json_encode($x);
-    //echo json_encode($r);
-    //echo json_encode($partyname);
-    //echo json_encode($score);
-    //echo json_encode($resultCheck); // CHANGE BACK TO GOVPARTIES
-
 }
 
 
