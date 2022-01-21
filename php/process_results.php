@@ -28,24 +28,24 @@ $govparties= array(
     "Australian Progressives" => 0,
     "Centre Alliance" => 0,
     "Christian Democratic Party (Fred Nile Group)" => 0,
-    "Climate Emergancy Action Alliance: Vote Planet" => 0,
+    "Climate Emergency Action Alliance: Vote Planet" => 0,
     "Country Liberal Party (NT)" => 0,
     "Democratic Labour Party" => 0,
-    "Derryn Hinch's Justice Party" => 0,
+    "Derryn Hinchs Justice Party" => 0,
     "Federal ICAC Now" => 0,
     "Health Australia Party" => 0,
     "Independents CAN" => 0,
     "Indigenous - Aboriginal Party of Australia" => 0,
     "Informed Medical Options Party" => 0,
     "Jaqui Lambie Network" => 0,
-    "Katter's Australian Party (KAP)" => 0,
+    "Katters Australian Party (KAP)" => 0,
     "Legalise Cannabis Australia" => 0,
     "Liberal Democratic Party" => 0,
     "Liberal Party of Australia" => 0,
     "Love Australia or Leave" => 0,
     "National Party of Australia" => 0,
     "No5G Party" => 0,
-    "Pauline Hanson's One Nation" => 0,
+    "Pauline Hansons One Nation" => 0,
     "Reason Australia" => 0,
     "Rex Patrick Team" => 0,
     "Science Party" => 0,
@@ -59,13 +59,13 @@ $govparties= array(
     "United Australia Party" => 0,
     "VOTEFLUX.ORG | Upgrade Democracy!" => 0,
     "Victorian Socialists" => 0,
-    "Western Australia Party" => 0
+    "Western Australia Party" => 0,
+    "test" => 0
 );
 
 $testA = array(
     "test" => 0
 );
-
 
 
 // SERVER RESPONSE TO POST REQUEST
@@ -74,19 +74,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
     // copy returned json into an array?
     $array = json_decode($_POST['results'], true);
 
-    ///////////////////////////////////////////////////////////////////
-    // NEED TO CREATE DATABASE - BASICALLY SAME AS EXCEL SPREADSHEET //
-    ///////////////////////////////////////////////////////////////////
-
     
-    
-
-    
-
     // check entire array for now
     // Liberal => 0;
     foreach($govparties as $partyname => $partyresults) { 
-       
+   
+
         // {"code":"Z1","question":"Test Question Associative Z1","result":"stronglyAgree"}            
         foreach($array as $return_obj => $answers){
 
@@ -95,27 +88,35 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
 
             $userAnswer = $answers['result']; // e.g. stronglyAgree
             $qcode = $answers['code']; // e.g. Z1
-            $p = $govparties[$partyname];
-            
+            $p = $govparties[$partyname]; //  == 0
             $a = 'test';
+            $t = 'thj';
+            $r = $partyname;
+
+
             //$SQLgetResults = "SELECT $userAnswer FROM parties WHERE questioncode='$qcode';"; // WORKS
-            //$SQLgetResults = "SELECT $userAnswer FROM parties WHERE party=$partyname AND questioncode='$qcode';"; // NOT GETTING ANY RESULTS
-            //$SQLgetResults = "SELECT $userAnswer FROM parties WHERE party='$govparties[$partyname]' AND questioncode='$qcode';"; 
+            $SQLgetResults = "SELECT $userAnswer FROM parties WHERE party='$partyname' AND questioncode='$qcode';"; // NOT GETTING ANY RESULTS but also showing as a correct query in log
+            //$SQLgetResults = "SELECT $userAnswer FROM parties WHERE party=$r AND questioncode='$qcode';"; 
             //$SQLgetResults = "SELECT $userAnswer FROM parties WHERE party='$a';"; //WORKS
-            $SQLgetResults = "SELECT $userAnswer FROM parties WHERE party='$p';"; // No Results 
+            //$SQLgetResults = "SELECT $userAnswer FROM parties WHERE party='$r';"; // This query shows up correctly in log
+            //$SQLgetResults = "SELECT $userAnswer FROM parties WHERE party='$p';"; // Not updating anything because this == 0 picking up the last parties (Western Australia) initial value
             //$SQLgetResults = "SELECT $userAnswer FROM parties WHERE party='test' AND questioncode='$qcode';"; 
          
             $score = mysqli_query($conn, $SQLgetResults);
-
-            //$govparties[$partyname]+=10; // WORKS
             
             $resultCheck = mysqli_num_rows($score); 
 
             if ($resultCheck > 0){
                 // if some results came back...    
                 $x = mysqli_fetch_array($score);
-                $govparties[$partyname]+=$x[0]; // works but is updating ALL                   
+                
+                if($x[0]!=0){
+                    $govparties[$partyname]+=$x[0]; // works but is updating ALL                 
+                    //$testA[$partyname]+=$x[0];
+                }
             }
+
+            
         } 
       
         
@@ -124,9 +125,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
     
 
           
-    //arsort($govparties);
+    arsort($govparties);
     echo json_encode($govparties);
+    //echo json_encode($p);
     //echo json_encode($x);
+    //echo json_encode($r);
     //echo json_encode($partyname);
     //echo json_encode($score);
     //echo json_encode($resultCheck); // CHANGE BACK TO GOVPARTIES
