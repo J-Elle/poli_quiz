@@ -88,34 +88,24 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
 
             $userAnswer = $answers['result']; // e.g. stronglyAgree
             $qcode = $answers['code']; // e.g. Z1
-            $p = $govparties[$partyname]; //  == 0
-            $a = 'test';
-            $t = 'thj';
-            $r = $partyname;
 
-
-            //$SQLgetResults = "SELECT $userAnswer FROM parties WHERE questioncode='$qcode';"; // WORKS
             $SQLgetResults = "SELECT $userAnswer FROM parties WHERE party='$partyname' AND questioncode='$qcode';"; // NOT GETTING ANY RESULTS but also showing as a correct query in log
-            //$SQLgetResults = "SELECT $userAnswer FROM parties WHERE party=$r AND questioncode='$qcode';"; 
-            //$SQLgetResults = "SELECT $userAnswer FROM parties WHERE party='$a';"; //WORKS
-            //$SQLgetResults = "SELECT $userAnswer FROM parties WHERE party='$r';"; // This query shows up correctly in log
-            //$SQLgetResults = "SELECT $userAnswer FROM parties WHERE party='$p';"; // Not updating anything because this == 0 picking up the last parties (Western Australia) initial value
-            //$SQLgetResults = "SELECT $userAnswer FROM parties WHERE party='test' AND questioncode='$qcode';"; 
-         
-            $score = mysqli_query($conn, $SQLgetResults);
-            
-            $resultCheck = mysqli_num_rows($score); 
 
-            if ($resultCheck > 0){
-                // if some results came back...    
-                $x = mysqli_fetch_array($score);
+            if($userAnswer != "neutral"){
+ 
+                $score = mysqli_query($conn, $SQLgetResults);
+            
+                $resultCheck = mysqli_num_rows($score); 
+
+                if ($resultCheck > 0){
+                    // if some results came back...    
+                    $x = mysqli_fetch_array($score);
                 
-                if($x[0]!=0){
-                    $govparties[$partyname]+=$x[0]; // works but is updating ALL                 
-                    //$testA[$partyname]+=$x[0];
+                    if($x[0]){
+                        $govparties[$partyname]+=$x[0]; // works but is updating ALL                 
+                    }
                 }
             }
-
             
         } 
       
